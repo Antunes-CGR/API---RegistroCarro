@@ -27,6 +27,23 @@ class CarroController {
 
   }
   async update(req, res) {
+    try {
+      const { user_id } = res.locals
+      const { id } = req.params
+
+      const updateCarro = await Carro.findByIdAndUpdate(id, {
+        nome: req.body.nome,
+        contato: req.body.contato,
+        email: req.body.email
+      })
+
+        await updateCarro.save()
+
+        return res.status(200).json({ msg:"Dados alterados", updateCarro})      
+    } catch (error) {
+      console.log(error)
+    }
+
   }
   async destroy(req, res) {
   }
