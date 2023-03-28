@@ -20,7 +20,7 @@ app.post('/carro', checkToken, CarroController.store )
 app.put('/carro/:id', checkToken, CarroController.update )
 app.delete('/carro/:id', checkToken, CarroController.destroy )
 app.get('/carro', CarroController.index)
-
+app.get('/carro/:id', CarroController.show)
 
 // connect DB
 const db_user = process.env.DB_USER
