@@ -6,6 +6,7 @@ app.use(express.json())
 
 //controllers
 const LoginController = require("./controller/LoginController")
+const CarroController = require('./controller/CarroController')
 
 //middlewares
 const {checkToken} = require("./midllwares/authentication")
@@ -14,7 +15,8 @@ const {checkToken} = require("./midllwares/authentication")
 app.post('/user/create', LoginController.store)
 app.post('/user/login', checkToken, LoginController.LoginStore)
 
-//app.get('/user', CarroController.index)
+//rotas carro
+app.post('/carro', checkToken, CarroController.store )
 
 
 // connect DB
