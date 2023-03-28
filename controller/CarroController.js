@@ -1,15 +1,18 @@
 
 //models
-const User = require("../models/User")
+const Carro = require("../models/Carro")
 
 class CarroController {
   async index(req, res) {
-    const listUser = await User.find()
-    return res.status(200).json(listUser)
+    const listCarro = await Carro.find()
+    return res.status(200).json(listCarro)
   }
   async store(req, res) {
     try {
-      const user = new User({
+      const { user_id } = res.locals
+
+      const carroCreate = await Carro.create({
+        user_id,
         nome: req.body.nome,
         carro: req.body.carro,
         placa: req.body.placa,
@@ -17,8 +20,7 @@ class CarroController {
         email: req.body.email
       })      
 
-      await user.save()
-      return res.status(200).json(user)
+      return res.status(200).json(carroCreate)
     } catch (error) {
       console.log(error)
     }
