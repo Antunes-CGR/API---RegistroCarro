@@ -17,6 +17,7 @@ app.post('/user/login', checkToken, LoginController.LoginStore)
 
 //rotas carro
 app.post('/carro', checkToken, CarroController.store )
+app.get('/carro', CarroController.index)
 
 
 // connect DB
