@@ -18,6 +18,7 @@ app.post('/user/login', checkToken, LoginController.LoginStore)
 //rotas carro
 app.post('/carro', checkToken, CarroController.store )
 app.put('/carro/:id', checkToken, CarroController.update )
+app.delete('/carro/:id', checkToken, CarroController.destroy )
 app.get('/carro', CarroController.index)
 
 
