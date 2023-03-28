@@ -46,6 +46,17 @@ class CarroController {
 
   }
   async destroy(req, res) {
+    try {
+      const { user_id } = res.locals
+      const { id } = req.params
+
+      const destroyCarro = await Carro.findByIdAndDelete(id)
+
+      return res.status(200).json({ msg: "Delete com sucesso!", destroyCarro})      
+    } catch (error) {
+      console.log(error)
+    }
+
   }
   async show(req, res) {
     
