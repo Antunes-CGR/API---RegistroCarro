@@ -59,7 +59,11 @@ class CarroController {
 
   }
   async show(req, res) {
-    
+    const { id } = req.params
+
+    const showCarro = await Carro.findById(id)
+
+    return res.status(200).json(showCarro)
   }
 }
 
