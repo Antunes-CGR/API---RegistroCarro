@@ -14,12 +14,26 @@ class UserController {
 
   async store(req, res) {
     try {
-      const { name, email, password } = req.body
+      const { name, email, password,confirmPassword } = req.body
 
       //password
       const salt = await bcrypt.genSalt(12)
       const passwordHash = await bcrypt.hash( password, salt)
-    
+      
+      //Validations
+      if(!name){
+        return res.status(400).json({ msg:"Necessário preenchimento do nome"})
+      }
+      if(!email){
+        return res.status(400).json({ msg:"Necessário preenchimento do email"})
+      }
+      if(!password){
+        return res.status(400).json({ msg:"Necessário preenchimento do senha"})
+      }
+      if(!confirmPassword){
+        return res.status(400).json({ msg:"Necessário preenchimento da Confirmação de senha"})
+      }
+
       //user
       const userCreate = new User({
         name,
