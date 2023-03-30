@@ -10,10 +10,11 @@ const CarroController = require('./controller/CarroController')
 
 //middlewares
 const {checkToken} = require("./midllwares/authentication")
+const {loginValidator} = require("./midllwares/validationLogin")
 
 //user login
 app.post('/user/create', LoginController.store)
-app.post('/user/login', checkToken, LoginController.LoginStore)
+app.post('/user/login', loginValidator, checkToken, LoginController.LoginStore)
 
 //rotas carro
 app.post('/carro', checkToken, CarroController.store )
